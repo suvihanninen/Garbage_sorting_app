@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/what_textView"
+            android:layout_width="51dp"
+            android:layout_height="wrap_content"
+            android:text="What?"
+            android:textSize="15dp"
+            android:layout_marginRight="10dp"/>
+
+        <EditText
+            android:id="@+id/what_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingStart="10dp"
+            android:hint="Enter what item"
+            android:backgroundTint="#add827"
+            android:background="@drawable/rounded_edit_text"
+
+
+
+     />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/where_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where?"
+            android:textSize="15dp"
+            android:layout_marginRight="10dp"/>
+
+        <EditText
+            android:id="@+id/where_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingStart="10dp"
+            android:hint="Enter where to put item"
+
+            android:backgroundTint="#add827"
+            android:background="@drawable/rounded_edit_text"
+
+
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/add_new_item_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add new item"
+
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/trash" />
+
+
+</LinearLayout>
