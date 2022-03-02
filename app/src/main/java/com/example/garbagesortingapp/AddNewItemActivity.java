@@ -18,7 +18,7 @@ public class AddNewItemActivity extends AppCompatActivity {
         EditText whereEditText = findViewById(R.id.where_edit_text);
         Button addItemButton = findViewById(R.id.add_new_item_button);
 
-        ItemsDB.initialize();
+
         itemsDB= ItemsDB.get();
 
          addItemButton.setOnClickListener(new View.OnClickListener() {

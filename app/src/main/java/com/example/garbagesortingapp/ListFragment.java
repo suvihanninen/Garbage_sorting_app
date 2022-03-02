@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,16 @@ public class ListFragment extends Fragment {
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         itemsDB= ItemsDB.get();
+
+
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v= inflater.inflate(R.layout.fragment_list_, container, false);
         listThings= v.findViewById(R.id.listItems);
-        listThings.setText("Shopping List"+itemsDB.listItems());
+        listThings.setMovementMethod(new ScrollingMovementMethod());
+
+        listThings.setText("Garbages: "+itemsDB.listGarbages());
         return v;
     }
 }

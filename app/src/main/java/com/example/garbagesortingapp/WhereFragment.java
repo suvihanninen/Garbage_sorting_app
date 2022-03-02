@@ -16,9 +16,8 @@ import android.widget.Toast;
 public class WhereFragment extends Fragment {
 
     private static ItemsDB itemsDB;
-    private Button addItem, where, listItems;
+    private Button addItem, where;
     private TextView itemWhere;
-    Intent intent= new Intent(WhereFragment.this, AddNewItemActivity.class);
 
     public WhereFragment() {
         // Required empty public constructor
@@ -33,8 +32,10 @@ public class WhereFragment extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_where_, container, false);
 
         //Text Fields
+        itemWhere = v.findViewById(R.id.find_where_edit_text);
         where = v.findViewById(R.id.where_button);
         addItem = v.findViewById(R.id.add_new_item_inMainActivity_button);
+
 
 
         where.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,7 @@ public class WhereFragment extends Fragment {
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent= new Intent(getActivity(), AddNewItemActivity.class);
                 startActivity(intent);
             }
         });
