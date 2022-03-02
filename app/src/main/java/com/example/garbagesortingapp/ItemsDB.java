@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ItemsDB {
 
-    private final ArrayList<Item> ItemsDB = new ArrayList<>();
+    private final HashMap<String, String> itemsDB= new HashMap<String, String>();
     private static ItemsDB sItemsDB;
 
     //constructor must be private in singleton
@@ -39,20 +39,13 @@ public class ItemsDB {
 
     public void addItem(String garbage, String where) {
 
-        ItemsDB.add(new Item(garbage, where));
+        itemsDB.put(garbage, where);
 
     }
 
-    public void fillItemsDB() {
+    public void fillItemsDB(Context context) {
 
-        ItemsDB.add(new Item("coffee", "bio"));
-        ItemsDB.add(new Item("meat", "bio"));
-        ItemsDB.add(new Item("peels", "bio"));
-        ItemsDB.add(new Item("apple", "bio"));
-        ItemsDB.add(new Item("box", "cartons"));
-        ItemsDB.add(new Item("milk", "cartons"));
-        ItemsDB.add(new Item("coke can", "metal"));
-        ItemsDB.add(new Item("tuna", "metal"));
+        new InputStreamReader(context.getAssets().open(”garbage.txt”)));
 
     }
 
