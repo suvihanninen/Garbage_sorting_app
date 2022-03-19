@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,29 +19,36 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     Fragment WhereFragment, ListFragment;
 
-    //Model: Database of items
-    private static ItemsDB itemsDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        itemsDB.initialize(this); //returns my context
-        itemsDB = ItemsDB.get();
         fm = getSupportFragmentManager();
         setUpFragments();
     }
 
+
     private void setUpFragments() {
-        WhereFragment= fm.findFragmentById(R.id.container_where);
-        ListFragment= fm.findFragmentById(R.id.container_list);
-        if ((WhereFragment == null) && (ListFragment == null)) {
-            WhereFragment= new WhereFragment();
-            ListFragment= new ListFragment();
-            fm.beginTransaction()
-                    .add(R.id.container_where, WhereFragment)
-                    .add(R.id.container_list, ListFragment)
-                    .commit();
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            WhereFragment= fm.findFragmentById(R.id.container_where);
+            ListFragment= fm.findFragmentById(R.id.container_list);
+            if ((WhereFragment == null) && (ListFragment == null)) {
+                Fragment fragmentUI= new WhereFragment();
+                Fragment fragmentList= new ListFragment();
+                fm.beginTransaction()
+                        .add(R.id.container_where, fragmentUI)
+                        .add(R.id.container_list, fragmentList)
+                        .commit();
+            }
+        } else {
+            //Orientation portrait
+            if (WhereFragment== null) {
+                WhereFragment = new WhereFragment();
+                fm.beginTransaction()
+                        .add(R.id.container_where, WhereFragment)
+                        .commit();
+            }
         }
     }
 }

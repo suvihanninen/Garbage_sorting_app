@@ -1,43 +1,21 @@
 package com.example.garbagesortingapp;
 
 import android.content.Context;
-
+import androidx.lifecycle.ViewModel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Map;
+
+//database lives in this activity -> we add stuff
+public class ItemsDB extends ViewModel{
 
 
-public class ItemsDB {
-
-    private final HashMap<String, String> itemsDB= new HashMap<String, String>();
-    private static ItemsDB sItemsDB;
-
-    //constructor must be private in singleton
-    private ItemsDB(Context context) { fillItemsDB(context,"garbage.txt"); }
+    private final Map<String, String> itemsDB= new HashMap<String, String>();
 
 
-    /**
-     * We initialize a ItemsDB if it hasen't ben initialized yet
-     * We cerate a sItemDB to state that an ItemsDB hasn't been initialized yet.
-     * If sItemsBB != null we won't initialize one.
-     * In the If statement we assign the ItemsBD to be the arraylist of items
-     */
-    public static void initialize(Context context) {
-        if (sItemsDB == null) {
-            sItemsDB = new ItemsDB(context);
-        }
-    }
-
-
-    public static ItemsDB get(){
-        if(sItemsDB==null){
-            throw new IllegalStateException("ItemsDB must be initialized");
-
-        }
-
-        return sItemsDB;
-    }
+    public ItemsDB(Context context) { fillItemsDB(context,"garbage.txt"); }
 
 
     public void addItem(String garbage, String where) {

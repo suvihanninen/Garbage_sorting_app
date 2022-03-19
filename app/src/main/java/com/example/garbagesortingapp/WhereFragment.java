@@ -1,6 +1,7 @@
 package com.example.garbagesortingapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -11,13 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+import androidx.lifecycle.ViewModelProvider;
 
 public class WhereFragment extends Fragment {
 
-    private static ItemsDB itemsDB;
-    private Button addItem, where;
+    private static ItemsModelView itemsDB;
+    private Button addItem, where, listItems;
     private TextView itemWhere;
+
 
     public WhereFragment() {
         // Required empty public constructor
@@ -25,7 +27,7 @@ public class WhereFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemsDB = ItemsDB.get();
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,10 +35,21 @@ public class WhereFragment extends Fragment {
 
         //Text Fields
         itemWhere = v.findViewById(R.id.find_where_edit_text);
+        //buttons
         where = v.findViewById(R.id.where_button);
         addItem = v.findViewById(R.id.add_new_item_inMainActivity_button);
+        listItems = v.findViewById(R.id.list_button);
 
+        itemsDB= new ViewModelProvider(requireActivity()).get(ItemsModelView.class);
 
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            listItems.setOnClickListener(view ->
+                    getActivity().
+                            getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.container_where,
+                                    new ListFragment()).commit());
+        }
 
         where.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,16 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.lifecycle.ViewModelProvider;
+
 
 
 public class ListFragment extends Fragment {
     private static ItemsDB itemsDB;
     private TextView listThings;
+
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemsDB= ItemsDB.get();
-
-
     }
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,7 +26,16 @@ public class ListFragment extends Fragment {
         listThings= v.findViewById(R.id.listItems);
         listThings.setMovementMethod(new ScrollingMovementMethod());
 
-        listThings.setText("Garbages: "+itemsDB.listGarbages());
+        ItemsModelView itemsDB= new ViewModelProvider(requireActivity()).get(ItemsModelView.class);
+        itemsDB.getValue().observe(getViewLifecycleOwner(), items -> listThings.setText("Garbages: " + items.listGarbages()));
+
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ItemsModelView itemsDB = new ViewModelProvider(requireActivity()).get(ItemsModelView.class);
+        itemsDB.getValue().observe(getViewLifecycleOwner(), items -> listThings.setText("Garbages: " + items.listGarbages()));
     }
 }
