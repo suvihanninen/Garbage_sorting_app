@@ -6,6 +6,7 @@ public class Item {
     private String where = null;
 
 
+
     //constructor for a item
     public Item(String garbage, String where) {
        this.garbage = garbage;
@@ -24,9 +25,15 @@ public class Item {
         this.garbage = garbage;
     }
 
+    public String getWhat() {
+        return garbage;
+    }
+
+
     public String getWhere() {
         return where;
     }
+
 
     public void setWhere(String where) {
         this.where = where;

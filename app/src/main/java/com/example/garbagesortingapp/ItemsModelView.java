@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.List;
+
 public class ItemsModelView extends AndroidViewModel {
     private static MutableLiveData<ItemsDB> items;
     private ItemsDB itemsDB;
@@ -19,6 +21,8 @@ public class ItemsModelView extends AndroidViewModel {
     }
 
     public MutableLiveData<ItemsDB> getValue() { return items; }
+
+    public List<Item> getList() { return items.getValue().getValues(); }
 
     public void addItem(String garbage, String where){
         ItemsDB temp= items.getValue();

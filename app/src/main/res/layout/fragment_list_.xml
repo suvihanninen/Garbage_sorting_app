@@ -5,12 +5,9 @@
     android:backgroundTint="#ffffff"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/listItems"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:scrollbars = "vertical"
-        android:background="#ffffff"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

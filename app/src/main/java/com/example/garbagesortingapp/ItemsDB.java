@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //database lives in this activity -> we add stuff
@@ -24,6 +26,18 @@ public class ItemsDB extends ViewModel{
         itemsDB.put(item.getGarbage(), item.getWhere());
 
     }
+
+    public List<Item>  getList(){
+
+            List<Item> result= new ArrayList<>();
+            for (HashMap.Entry <String, String> item: itemsDB.entrySet()) {
+                result.add(new Item(item.getKey(), item.getValue()));
+            }
+            return result;
+
+    }
+
+    public List<Item> getValues() {  return getList();  }
 
     public String listGarbages(){
         String line = " ";
