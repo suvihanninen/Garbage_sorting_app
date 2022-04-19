@@ -1,6 +1,7 @@
 package com.example.garbagesortingapp;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
